@@ -22,6 +22,15 @@ class MgToMcgViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = UIColor(named: "background")
         
+        convertView.convertButton.addTarget(self, action: #selector(calculate), for: .touchUpInside)
+        
     }
+    
+    @objc private func calculate() {
+        guard let text = convertView.textField.text, let gr = Double(text) else { return }
+        let mcg = gr * 1_000_000
+        convertView.resultLabel.text = "\(mcg) mcg"
+    }
+
 
 }

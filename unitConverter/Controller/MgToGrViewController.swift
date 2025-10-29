@@ -22,6 +22,15 @@ class MgToGrViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = UIColor(named: "background")
         
+        convertView.convertButton.addTarget(self, action: #selector(calculate), for: .touchUpInside)
+        
     }
+    
+    @objc private func calculate() {
+        guard let text = convertView.textField.text, let mg = Double(text) else { return }
+        let gr = mg / 1000
+        convertView.resultLabel.text = "\(gr) g"
+    }
+
 
 }
